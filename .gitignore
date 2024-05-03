@@ -1,0 +1,15 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+# Ignorar archivos y directorios generados por Vue CLI
+/node_modules
+/dist
+/npm-debug.log
+
+# Ignorar archivos y directorios generados por .NET Core
+/bin
+/obj
+/.vs
+/.idea
+*.suo
+*.user
+*.sln.docstates

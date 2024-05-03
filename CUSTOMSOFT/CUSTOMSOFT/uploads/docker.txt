@@ -1,0 +1,4 @@
+docker ps -> nos indica que insyancias se estan corriendo
+docker exec -it peaceful_cohen bash -> inicia la instancia
+psql -U postgres --password -> entrar a la instancia
+dotnet add package Npgsql -> paquete en net core

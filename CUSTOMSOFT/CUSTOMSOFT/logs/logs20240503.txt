@@ -1,0 +1,68 @@
+2024-05-03 01:04:17.896 -06:00 [ERR] An unhandled exception has occurred.
+System.NotSupportedException: Specified method is not supported.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseStream.Seek(Int64 offset, SeekOrigin origin)
+   at CUSTOMSOFT.API.Filters.RequestResponseLoggingMiddleware.FormatResponse(HttpResponse response) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\RequestResponseLoggingMiddleware.cs:line 60
+   at CUSTOMSOFT.API.Filters.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\RequestResponseLoggingMiddleware.cs:line 37
+   at CUSTOMSOFT.API.Filters.ErrorHandlingMiddleware.Invoke(HttpContext context) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\ErrorHandlingMiddleware.cs:line 33
+2024-05-03 01:04:18.277 -06:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Headers are read-only, response has already started.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.ThrowHeadersReadOnlyException()
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseHeaders.Microsoft.AspNetCore.Http.IHeaderDictionary.set_ContentType(StringValues value)
+   at Microsoft.AspNetCore.Http.DefaultHttpResponse.set_ContentType(String value)
+   at CUSTOMSOFT.API.Filters.ErrorHandlingMiddleware.HandleExceptionAsync(HttpContext context, Exception exception) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\ErrorHandlingMiddleware.cs:line 79
+   at CUSTOMSOFT.API.Filters.ErrorHandlingMiddleware.Invoke(HttpContext context) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\ErrorHandlingMiddleware.cs:line 48
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2024-05-03 01:04:18.285 -06:00 [WRN] The response has already started, the error page middleware will not be executed.
+2024-05-03 01:04:18.303 -06:00 [ERR] Connection id "0HN3B7SR7QS2E", Request id "0HN3B7SR7QS2E:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: Headers are read-only, response has already started.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.ThrowHeadersReadOnlyException()
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseHeaders.Microsoft.AspNetCore.Http.IHeaderDictionary.set_ContentType(StringValues value)
+   at Microsoft.AspNetCore.Http.DefaultHttpResponse.set_ContentType(String value)
+   at CUSTOMSOFT.API.Filters.ErrorHandlingMiddleware.HandleExceptionAsync(HttpContext context, Exception exception) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\ErrorHandlingMiddleware.cs:line 79
+   at CUSTOMSOFT.API.Filters.ErrorHandlingMiddleware.Invoke(HttpContext context) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\ErrorHandlingMiddleware.cs:line 48
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+2024-05-03 01:05:51.119 -06:00 [ERR] An unhandled exception has occurred.
+System.NotSupportedException: Specified method is not supported.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseStream.Seek(Int64 offset, SeekOrigin origin)
+   at CUSTOMSOFT.API.Filters.RequestResponseLoggingMiddleware.FormatResponse(HttpResponse response) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\RequestResponseLoggingMiddleware.cs:line 60
+   at CUSTOMSOFT.API.Filters.RequestResponseLoggingMiddleware.Invoke(HttpContext context) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\RequestResponseLoggingMiddleware.cs:line 37
+   at CUSTOMSOFT.API.Filters.ErrorHandlingMiddleware.Invoke(HttpContext context) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\ErrorHandlingMiddleware.cs:line 33
+2024-05-03 01:05:51.251 -06:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Headers are read-only, response has already started.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.ThrowHeadersReadOnlyException()
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseHeaders.Microsoft.AspNetCore.Http.IHeaderDictionary.set_ContentType(StringValues value)
+   at Microsoft.AspNetCore.Http.DefaultHttpResponse.set_ContentType(String value)
+   at CUSTOMSOFT.API.Filters.ErrorHandlingMiddleware.HandleExceptionAsync(HttpContext context, Exception exception) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\ErrorHandlingMiddleware.cs:line 79
+   at CUSTOMSOFT.API.Filters.ErrorHandlingMiddleware.Invoke(HttpContext context) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\ErrorHandlingMiddleware.cs:line 48
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2024-05-03 01:05:51.255 -06:00 [WRN] The response has already started, the error page middleware will not be executed.
+2024-05-03 01:05:51.259 -06:00 [ERR] Connection id "0HN3B7SR7QS2F", Request id "0HN3B7SR7QS2F:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: Headers are read-only, response has already started.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpHeaders.ThrowHeadersReadOnlyException()
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseHeaders.Microsoft.AspNetCore.Http.IHeaderDictionary.set_ContentType(StringValues value)
+   at Microsoft.AspNetCore.Http.DefaultHttpResponse.set_ContentType(String value)
+   at CUSTOMSOFT.API.Filters.ErrorHandlingMiddleware.HandleExceptionAsync(HttpContext context, Exception exception) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\ErrorHandlingMiddleware.cs:line 79
+   at CUSTOMSOFT.API.Filters.ErrorHandlingMiddleware.Invoke(HttpContext context) in C:\Users\ylexn\Documents\git\EXAMEN\CUSTOMSOFT\CUSTOMSOFT\Filters\ErrorHandlingMiddleware.cs:line 48
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware.InvokeAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)

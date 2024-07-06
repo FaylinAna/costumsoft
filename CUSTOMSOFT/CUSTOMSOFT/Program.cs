@@ -28,6 +28,7 @@ Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
     .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
     .MinimumLevel.Override("System", LogEventLevel.Warning)
+    .MinimumLevel.Override("Error", LogEventLevel.Error)
     .Enrich.FromLogContext()
     .WriteTo.File("logs/logs.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: 7)
     .CreateLogger();
@@ -42,6 +43,9 @@ options.AddPolicy("AllowAll", p => p
 .AllowAnyHeader()));
 
 //Filters
+//builder.Services.AddControllers(options => options.Filters.Add(typeof(ModelStateValidationFilter)));
+
+
 builder.Services.AddControllers()
     .AddControllersAsServices()
     .ConfigureApplicationPartManager(manager =>
@@ -56,12 +60,8 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddScoped<ValidateTokenFilter>();
+builder.Services.AddControllers();
 
-builder.Services.AddControllers()
-    .AddMvcOptions(options =>
-    {
-        options.Filters.Add(new ModelStateValidationFilter()); 
-    });
 //security
 var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
 var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
@@ -82,17 +82,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // Size File
-//builder.Services.Configure<FormOptions>(options =>
-//{
-//    options.ValueLengthLimit = 1024 * 1024 * 1024; // 
-//    options.MultipartBodyLengthLimit = 1024 * 1024 * 1024; // 
-//    options.MultipartHeadersLengthLimit = 1024 * 1024 * 1024; // 
-//});
-
 builder.Services.Configure<FormOptions>(options =>
 {
-    options.MultipartBodyLengthLimit = 1024 * 1024 * 100;
-    options.MultipartHeadersLengthLimit = 1024 * 1024 * 1024;
+    options.ValueLengthLimit = 1024 * 1024 * 1024; // 
+    options.MultipartBodyLengthLimit = 1024 * 1024 * 1024; // 
+    options.MultipartHeadersLengthLimit = 1024 * 1024 * 1024; // 
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -107,13 +101,9 @@ builder.Services.AddMediatR(configuration => configuration.RegisterServicesFromA
 builder.Services.AddMediatR(configuration => configuration.RegisterServicesFromAssemblyContaining(typeof(AddPackageCommand)));
 
 builder.Services.AddScoped<IFileService, FilesServices>();
-var app = builder.Build();
+//builder.Services.AddTransient<ErrorHandlingMiddleware>();
 
-app.UseStaticFiles(new StaticFileOptions()
-{
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
-    RequestPath = new PathString("/Resources")
-});
+var app = builder.Build();
 app.UseCors("AllowAll");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -123,13 +113,14 @@ if (app.Environment.IsDevelopment())
 }
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseExceptionHandler();
 
-;app.UseHttpsRedirection();
+//app.UseExceptionHandler();
+
+app.UseHttpsRedirection();
 app.MapControllers();
 //Log;
-app.UseMiddleware<ErrorHandlingMiddleware>();
-app.UseMiddleware<RequestResponseLoggingMiddleware>();
+
+//app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
 
 app.Run();

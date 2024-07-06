@@ -34,36 +34,47 @@ namespace CUSTOMSOFT.INFRAESTRUCTURE.Data.Repository
         }
         public async Task<Aplicacion> GetByNameAsync(string aplicationName, string apiKey)
         {
-            var Token = "";
-            var parameters = new DynamicParameters();
-            parameters.Add("p_nombre", aplicationName, DbType.String, ParameterDirection.Input);
-            parameters.Add("p_apiKey", apiKey, DbType.String, ParameterDirection.Input);
+            try { 
+                    var Token = "";
+                    var parameters = new DynamicParameters();
+                    parameters.Add("p_nombre", aplicationName, DbType.String, ParameterDirection.Input);
+                    parameters.Add("p_apiKey", apiKey, DbType.String, ParameterDirection.Input);
 
-            using (var connection = _connectionSettings.OpenSQLConnectionAsync())
+                    using (var connection = _connectionSettings.OpenSQLConnectionAsync())
+                    {
+
+                        var res = (List<Aplicacion>)await connection
+                                                 .QueryAsync<Aplicacion>
+                                                    ("SELECT * FROM  public.get_credencials_by_parameters(@p_nombre,@p_apiKey)", parameters);
+                        res.First().ClientSecretKey = GenerateShortToken(res.First().PrivateKey, res.First().ClientSecretKey);
+
+                        return res.First();
+
+
+                    }
+            }
+            catch (Exception ex)
             {
-
-                var res = (List<Aplicacion>)await connection
-                                         .QueryAsync<Aplicacion>
-                                            ("SELECT * FROM  public.get_credencials_by_parameters(@p_nombre,@p_apiKey)", parameters);
-                res.First().ClientSecretKey = GenerateShortToken(res.First().PrivateKey, res.First().ClientSecretKey);
-
-                return res.First();
-
-
+                throw ex;
             }
 
         }
         public async Task<Aplicacion> AddAsync(ApplicationDTO application)
         {
-            var newApplication = new ApplicationDTO(application.Name);
-            using (var connection = _connectionSettings.OpenSQLConnectionAsync())
-            {
+            try { 
+                var newApplication = new ApplicationDTO(application.Name);
+                using (var connection = _connectionSettings.OpenSQLConnectionAsync())
+                {
 
-                var parameters = GetParameterList(newApplication);
-                var res = await connection.QueryAsync("SELECT add_application(@p_nombre, @p_apikey, @p_clientsecretkey, @p_privatekey)", parameters);
-            }
-            return new Aplicacion { Nombre = newApplication.Name,ApiKey = newApplication.ApiKey};
-        }
+                    var parameters = GetParameterList(newApplication);
+                    var res = await connection.QueryAsync("SELECT add_application(@p_nombre, @p_apikey, @p_clientsecretkey, @p_privatekey)", parameters);
+                }
+                return new Aplicacion { Nombre = newApplication.Name,ApiKey = newApplication.ApiKey};
+            }catch(Exception ex)
+                {
+                    throw ex;
+                }
+}
 
         public string GenerateShortToken(string privateKey, string clientSecretKey)
         {
@@ -80,7 +91,7 @@ namespace CUSTOMSOFT.INFRAESTRUCTURE.Data.Repository
             var Sectored = new JwtSecurityToken(_configuration.GetSection("Jwt:Issuer").Value,
               _configuration.GetSection("Jwt:Issuer").Value,
               claims,
-              expires: DateTime.Now.AddDays(15),
+              expires: DateTime.Now.AddHours(1),
               signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(Sectored);

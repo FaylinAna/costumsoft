@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { Package } from "../../ApiService/Services/types";
+import { Package } from "../../ApiService/Interfaces/types";
 import { addPackage } from "../../ApiService/Services/ApiService";
 
 export default defineComponent({
@@ -62,6 +62,7 @@ export default defineComponent({
           emit("message-succes", newPackageResponse, messagesInfo);
           resolve(newPackageResponse);
         } catch (err) {
+          
           error.value = err.message || "Error al agregar el paquete";
           emit("message-error", error.value);
           reject(err);

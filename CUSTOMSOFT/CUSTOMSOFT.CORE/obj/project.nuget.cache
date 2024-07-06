@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Nd3SvFaRRbhmOh3JiERzIjfCqH+qZF7UVTaYzdfayuGYDHC382Ambqhmec9ezeI3TQjrWim/0rzGYkTPqoSK5Q==",
+  "dgSpecHash": "xIJVgODRQ2S1qbRNnsqg1BX5ckgZlqhB4MT7kQrg5UsF05kdfAwycSqhYxAETPi+W7bbIyIs74Hyosk61kkzlA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj",
+  "projectFilePath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ylexn\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "C:\\Users\\ylexn\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",

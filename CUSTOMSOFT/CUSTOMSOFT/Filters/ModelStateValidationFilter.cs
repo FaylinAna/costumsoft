@@ -9,7 +9,21 @@ namespace CUSTOMSOFT.API.Filters
         {
             if (!context.ModelState.IsValid)
             {
-                context.Result = new BadRequestObjectResult(context.ModelState);
+                var problemDetails = new ProblemDetails
+                {
+                    Type = "https://example.com/validation-error",
+                    Title = "Validation Error",
+                    Status = 400,
+                    Detail = "Uno o más campos no son válidos.",
+                    Instance = context.HttpContext.Request.Path
+                };
+
+                foreach (var error in context.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    problemDetails.Extensions.Add(error.Exception?.GetType().ToString() ?? "Error", error.ErrorMessage);
+                }
+
+                context.Result = new BadRequestObjectResult(problemDetails);
             }
         }
 
@@ -17,7 +31,21 @@ namespace CUSTOMSOFT.API.Filters
         {
             if (!context.ModelState.IsValid)
             {
-                context.Result = new BadRequestObjectResult(context.ModelState);
+                var problemDetails = new ProblemDetails
+                {
+                    Type = "https://example.com/validation-error",
+                    Title = "Validation Error",
+                    Status = 400,
+                    Detail = "Uno o más campos no son válidos.",
+                    Instance = context.HttpContext.Request.Path
+                };
+
+                foreach (var error in context.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    problemDetails.Extensions.Add(error.Exception?.GetType().ToString() ?? "Error", error.ErrorMessage);
+                }
+
+                context.Result = new BadRequestObjectResult(problemDetails);
             }
         }
     }

@@ -9,6 +9,14 @@
         <template v-slot:append>
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
+              <v-btn icon v-on="on" to="/">
+                <v-icon>mdi-home</v-icon>
+              </v-btn>
+            </template>
+            <span>Home</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
               <v-btn icon v-on="on" to="/PaqueteHistory">
                 <v-icon>mdi-package</v-icon>
               </v-btn>

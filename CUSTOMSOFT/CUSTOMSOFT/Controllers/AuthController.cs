@@ -44,7 +44,8 @@ namespace CUSTOMSOFT.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                var errorDetails = new ErrorDetails(ex);
+                return StatusCode((int)errorDetails.StatusCode, errorDetails);
             }
         }
         [HttpPost("[action]")]
@@ -74,7 +75,8 @@ namespace CUSTOMSOFT.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                var errorDetails = new ErrorDetails(ex);
+                return StatusCode((int)errorDetails.StatusCode, errorDetails);
             }
         }
     }

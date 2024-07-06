@@ -5,6 +5,7 @@ export interface Package {
     deliveryAddress: string;
     stateDate: string;
     weight: number;
+    StateDescription : string;
     states: State[];
   }
   
@@ -22,6 +23,14 @@ export interface Package {
 
   }
 
+  interface ErrorDetails {
+    type: string;
+    title: string;
+    status: number;
+    traceId: string;
+    errors: Record<string, string[]>;
+  }
+  
   export interface TokenModel {
     access_token: number;
     expires_in: string;

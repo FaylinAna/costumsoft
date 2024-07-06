@@ -6,7 +6,7 @@
           <v-card-title class="blue lighten-4">Configuración de la Aplicación</v-card-title>
           <v-card-text>
             <v-text-field v-model="newApplicationModel.Nombre" label="Nombre de la Aplicación" required></v-text-field>
-            <v-text-field v-model="newApplicationModel.ApiKey" label="API Key" required></v-text-field>
+            <v-text-field v-model="newApplicationModel.ApiKey" label="API Key" required type="password"></v-text-field>
           </v-card-text>
           <v-card-actions>
             <v-btn @click="handleGetToken" color="primary">Obtener Token</v-btn>
@@ -40,7 +40,7 @@ export default defineComponent({
       try {
         const token = await getToken(newApplicationModel.value);
         console.log('Token guardado en localStorage:', token);
-        router.push('/PaqueteHistory');
+        router.push('/');
       } catch (err) {
         console.error('Error al actualizar el token:', err);
         error.value = err.message || 'Error desconocido al agregar el paquete';

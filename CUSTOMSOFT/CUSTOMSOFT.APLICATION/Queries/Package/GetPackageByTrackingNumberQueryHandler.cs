@@ -22,10 +22,17 @@ namespace CUSTOMSOFT.APLICATION.Queries.Package
 
         public async Task<PackageDTO?> Handle(GetPackageByTrackingNumberQuery request, CancellationToken cancellationToken)
         {
-            var package = await _packageRepository.GetByTrackingNumberAsync(request.TrackingNumber);
+            try
+            {
+                var package = await _packageRepository.GetByTrackingNumberAsync(request.TrackingNumber);
 
-            var response = PackageExtensions.ToDTO(package);
-            return response;
+                var response = PackageExtensions.ToDTO(package);
+                return response;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         

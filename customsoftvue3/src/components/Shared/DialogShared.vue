@@ -1,34 +1,10 @@
 <template>
-  <v-dialog v-model="isVisible">
+  <v-dialog v-model="isVisible" max-width="800px">
     <v-card>
       <v-card-title>{{ modalTitle }}</v-card-title>
       <v-card-text>
-        <template v-if="modalContent === 'packageDetails'">
-          <div>
-            <PackageDetailsModal 
-            :packageStates="packageStates"
-            :packageItem = "packageItem"
-            />
-
-          </div>
-        </template>
-        <template v-else-if="modalContent === 'NewPackageForm'">
-          <div>
-            <NewPackageForm 
-            @loading="showLoadingAlert" 
-            @added="handleFileChange" 
-            @message-error="showErrorAlert"
-            @message-succes ="showSuccessAlert"
-             />
-          </div>
-        </template>
-        <template v-else-if="modalContent === 'ViewPackage'">
-          <div>
-          </div>
-        </template>
-        <template v-else-if="modalContent === 'updatePackage'">
-          <div></div>
-        </template>
+       
+        <slot></slot>
       </v-card-text>
       <v-card-actions>
         <v-btn @click="closeModal" color="primary" :disabled="buttonsDisabled"
@@ -52,8 +28,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, PropType } from "vue";
-import { State } from "../ApiService/Interfaces/types";
-import {PackageDetailsModal} from "../Packages/PackageDetailsModal.vue"
+import { State,Package } from "../../ApiService/Interfaces/types";
+
 export default defineComponent({
   props: {
     isVisible: Boolean,
@@ -73,7 +49,8 @@ export default defineComponent({
     const buttonsDisabled = ref(false);
     const loading = ref(false);
     const messagesView   = ref<string>("");
-      const messageserrorView  = ref<string>("");
+    const messageserrorView  = ref<string>("");
+
     const closeModal = () => {
       emit("close");
     };
@@ -98,11 +75,10 @@ export default defineComponent({
       console.log("showLoadingAlert");
  
     };
-    const handleFileChange = (newPackageResponse,messagesInfo) => {
+    const handleFileChange = () => {
       buttonsDisabled.value = false;
       loading.value = false;
-      
-      emit("added"); 
+      emit("package-added"); 
 
     };
 

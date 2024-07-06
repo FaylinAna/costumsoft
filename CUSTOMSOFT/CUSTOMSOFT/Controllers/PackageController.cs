@@ -13,8 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace CUSTOMSOFT.API.Controllers
 {
-    // [Authorize]
-    [AllowAnonymous]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PackageController : ControllerBase
@@ -29,12 +28,14 @@ namespace CUSTOMSOFT.API.Controllers
         {
             try
             {
-                var response = await _mediator.Send(new GetPackageByTrackingNumberQuery() { TrackingNumber = trackingNumber });
+                var response = await _mediator.Send(new GetFileByPackageIdQuery() { TrackingNumber = trackingNumber });
                 return Ok(response);
 
             }catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                var errorDetails = new ErrorDetails(ex);
+                errorDetails.Title = "Validation Error, No content";
+                return StatusCode(204, errorDetails);
             }
             
         }
@@ -50,7 +51,8 @@ namespace CUSTOMSOFT.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                var errorDetails = new ErrorDetails(ex);
+                return StatusCode((int)errorDetails.StatusCode, errorDetails);
             }
 
         }
@@ -75,19 +77,14 @@ namespace CUSTOMSOFT.API.Controllers
             }
             catch (Exception ex)
             {
-                var problemDetails = new ProblemDetails
-                {
-                    Status = StatusCodes.Status500InternalServerError,
-                    Title = "An error occurred while processing your request",
-                    Detail = ex.Message
-                };
-                return StatusCode(StatusCodes.Status500InternalServerError, problemDetails);
+                var errorDetails = new ErrorDetails(ex);
+                return StatusCode((int)errorDetails.StatusCode, errorDetails);
 
             }
         }
 
 
-        [HttpPut("[action]")]
+        [HttpPatch("[action]")]
         public async Task<IActionResult> UpdatePackage([FromBody] PackageAddModel package)
         {
             if (package is null)
@@ -99,16 +96,21 @@ namespace CUSTOMSOFT.API.Controllers
             {
                 var response = await _mediator.Send(new UpdatePackageCommand(new PackageDTO
                 {
+                    Id = (int)package.Id,
                     CustomerName = package.CustomerName,
+                    
                     DeliveryAddress = package.DeliveryAddress,
                     Weight = package.Weight,
+                    StateDescription = package.StateDescription,
+                    
                 }));
 
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                var errorDetails = new ErrorDetails(ex);
+                return StatusCode((int)errorDetails.StatusCode, errorDetails);
             }
         }
     }

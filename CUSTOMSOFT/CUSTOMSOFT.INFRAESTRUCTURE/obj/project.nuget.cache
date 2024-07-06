@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PneNxiuFseJhj0Wsvs5W2vKzKQkyvHIvfD0MzVLiPqbcGi4zegCnxi5C4ECXIDA+1xVjSz3bU4gwczDeSiWBGQ==",
+  "dgSpecHash": "wqy2zknVDwNPGdOGFl3keLL4d7z9ztZiiFRGPxVWSKjrfMIY+rKSElqsY1p7dyFeM+jSuQdbi656eFPgcbsXGQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj",
+  "projectFilePath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ylexn\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\ylexn\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",

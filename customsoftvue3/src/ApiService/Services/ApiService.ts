@@ -4,11 +4,14 @@ import { API_URL } from '../config';
 import {jwtDecode} from 'jwt-decode';
 
 //const API_URL = process.env.VUE_APP_API_URL;
+const accessToken = localStorage.getItem('accessToken');
+const headers = accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
 const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
+    ...headers
   },
 });
 
@@ -23,6 +26,7 @@ export async function getPackages(): Promise<Package[]> {
     return [];
   }
 }
+
 export async function getPackageByTrackingNumber(trackingNumber: string): Promise<Package | null> {
   try {
     const response = await api.get(`Package/GetPackagesByTrackingNumber?trackingNumber=`+trackingNumber);
@@ -32,6 +36,7 @@ export async function getPackageByTrackingNumber(trackingNumber: string): Promis
     return null;
   }
 }
+
 export async function addPackage(newPackage: Package): Promise<Package> {
   try {
     const response = await api.post('Package/AddPackage', newPackage);
@@ -40,6 +45,17 @@ export async function addPackage(newPackage: Package): Promise<Package> {
     return addedPackage; 
   } catch (error) {
     console.error('Error al agregar el paquete:', error);
+    throw new Error('Error al agregar el paquete');
+  }
+}
+
+export async function UpdatePackage(newPackage: Package): Promise<Package> {
+  try {
+    const response = await api.patch('Package/UpdatePackage', newPackage);
+    const addedPackage: Package = response.data; 
+
+    return addedPackage; 
+  } catch (error) {
     throw new Error('Error al agregar el paquete');
   }
 }
@@ -55,7 +71,6 @@ export async function getToken(application: ApplicationModel): Promise<TokenMode
     
     return token;
   } catch (error) {
-    console.error('Error al obtener el token:', error);
     throw new Error('Error al obtener el token');
   }
 }
@@ -83,7 +98,7 @@ export async function RefreshToken(application: ApplicationModel): Promise<Token
 
     return token;
   } catch (error) {
-    console.error('Error al obtener o refrescar el token:', error);
+
     throw new Error('Error al obtener o refrescar el token');
   }
 }
@@ -100,8 +115,7 @@ export async function addFile(formData, idPackage, type) {
 
       const addedPackage: File = addResponseFile.data; 
       return addedPackage;
-      console.log(addResponseFile, 'Archivo enviado con éxito');
-  } catch (error) {
+      } catch (error) {
       console.error('Error al enviar el archivo:', error);
   }
 }

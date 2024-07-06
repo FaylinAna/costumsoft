@@ -14,7 +14,7 @@
     },
     methods: {
       handleFileChange(node, event) {
-        // Lógica para manejar la carga de archivos
+  
       },
     },
   };

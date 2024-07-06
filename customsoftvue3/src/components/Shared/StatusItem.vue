@@ -5,7 +5,7 @@
     </v-list-item-icon>
     <v-list-item-content>
       <v-list-item-title
-        >{{ status.state }} - {{ status.stateDatePackages }}</v-list-item-title
+        >{{ status.state }} - {{ status.state_Date_Packages }}</v-list-item-title
       >
     </v-list-item-content>
   </v-list-item>
@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { State } from "../ApiService/Interfaces/types";
+import { State } from "../../ApiService/Interfaces/types";
 
 export default defineComponent({
   props: {

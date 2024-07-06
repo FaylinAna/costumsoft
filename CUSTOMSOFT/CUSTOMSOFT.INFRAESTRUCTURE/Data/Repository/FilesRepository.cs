@@ -19,13 +19,36 @@ namespace CUSTOMSOFT.INFRAESTRUCTURE.Data.Repository
         {
             _connectionSettings = connectionSettings;
         }
+
+        public async Task<List<FileDto>> GetFileByPackageId(int packageId)
+        {
+            try
+            {
+                using var connection = _connectionSettings.OpenSQLConnectionAsync();
+                var parameters = new DynamicParameters();
+                parameters.Add("p_PackageId", packageId, DbType.Int16, ParameterDirection.Input);
+                var res = await connection.QueryFirstAsync<FileDto>("SELECT getFilesByPackageId(@p_PackageId)", parameters);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
         public async Task<FileDto> AddFile(FileDto fileDto)
         {
-            using var connection = _connectionSettings.OpenSQLConnectionAsync();
+            try {
+                using var connection = _connectionSettings.OpenSQLConnectionAsync();
 
-            var parameters = GetParameterList(fileDto);
-            var res = await connection.QueryFirstAsync("SELECT addFile(@p_FileName, @p_FileType, @p_FilePath,@p_PackageId)", parameters);
-            return fileDto;
+                var parameters = GetParameterList(fileDto);
+                var res = await connection.QueryFirstAsync("SELECT addFile(@p_FileName, @p_FileType, @p_FilePath,@p_PackageId)", parameters);
+                return fileDto;
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
+           
         }
 
         public static DynamicParameters GetParameterList(FileDto fileDto)

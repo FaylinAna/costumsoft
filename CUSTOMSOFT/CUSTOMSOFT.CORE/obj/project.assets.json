@@ -418,11 +418,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj",
+      "projectUniqueName": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj",
       "projectName": "CUSTOMSOFT.CORE",
-      "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj",
+      "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj",
       "packagesPath": "C:\\Users\\ylexn\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\obj\\",
+      "outputPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ylexn\\AppData\\Roaming\\NuGet\\NuGet.Config",

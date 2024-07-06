@@ -25,6 +25,8 @@ namespace CUSTOMSOFT.APLICATION.Commands.Package
         {
             var requestDto = new PackageDTO
             {
+                Id = request.PackageId,
+                StateDescription = request.StateDescription,
                 CustomerName = request.CustomerName,
                 DeliveryAddress = request.DeliveryAddress,
                 Weight = request.Weight

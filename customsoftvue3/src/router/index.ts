@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import ApplicationConfiguration from '../components/Autentication/Login.vue'; 
 import PaqueteHistory from '../components/Packages/PackageTable.vue';
 import Directorio from '../components/Directorios/Directorio.vue';
+import Home from '../pages/Home.vue'
 
 const routes = [
   {
@@ -20,6 +21,12 @@ const routes = [
     path: '/directorio',
     name: 'directorio',
     component: Directorio,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
     meta: { requiresAuth: true }
   }
 ];

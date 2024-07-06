@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT\\CUSTOMSOFT.API.csproj": {}
+    "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT\\CUSTOMSOFT.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\CUSTOMSOFT.APLICATION.csproj": {
+    "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\CUSTOMSOFT.APLICATION.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\CUSTOMSOFT.APLICATION.csproj",
+        "projectUniqueName": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\CUSTOMSOFT.APLICATION.csproj",
         "projectName": "CUSTOMSOFT.APLICATION",
-        "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\CUSTOMSOFT.APLICATION.csproj",
+        "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\CUSTOMSOFT.APLICATION.csproj",
         "packagesPath": "C:\\Users\\ylexn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\obj\\",
+        "outputPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ylexn\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj": {
-                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj"
+              "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj": {
+                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj"
               },
-              "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj": {
-                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj"
+              "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj": {
+                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj"
               }
             }
           }
@@ -72,14 +72,14 @@
         }
       }
     },
-    "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj": {
+    "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj",
+        "projectUniqueName": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj",
         "projectName": "CUSTOMSOFT.CORE",
-        "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj",
+        "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj",
         "packagesPath": "C:\\Users\\ylexn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\obj\\",
+        "outputPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ylexn\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -133,14 +133,14 @@
         }
       }
     },
-    "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj": {
+    "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj",
+        "projectUniqueName": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj",
         "projectName": "CUSTOMSOFT.INFRAESTRUCTURE",
-        "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj",
+        "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj",
         "packagesPath": "C:\\Users\\ylexn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\obj\\",
+        "outputPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ylexn\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -157,8 +157,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj": {
-                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj"
+              "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj": {
+                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj"
               }
             }
           }
@@ -234,14 +234,14 @@
         }
       }
     },
-    "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT\\CUSTOMSOFT.API.csproj": {
+    "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT\\CUSTOMSOFT.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT\\CUSTOMSOFT.API.csproj",
+        "projectUniqueName": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT\\CUSTOMSOFT.API.csproj",
         "projectName": "CUSTOMSOFT.API",
-        "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT\\CUSTOMSOFT.API.csproj",
+        "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT\\CUSTOMSOFT.API.csproj",
         "packagesPath": "C:\\Users\\ylexn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT\\obj\\",
+        "outputPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ylexn\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -258,14 +258,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\CUSTOMSOFT.APLICATION.csproj": {
-                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\CUSTOMSOFT.APLICATION.csproj"
+              "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\CUSTOMSOFT.APLICATION.csproj": {
+                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.APLICATION\\CUSTOMSOFT.APLICATION.csproj"
               },
-              "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj": {
-                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj"
+              "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj": {
+                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.CORE\\CUSTOMSOFT.CORE.csproj"
               },
-              "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj": {
-                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\EXAMEN\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj"
+              "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj": {
+                "projectPath": "C:\\Users\\ylexn\\Documents\\git\\costumsoft\\CUSTOMSOFT\\CUSTOMSOFT.INFRAESTRUCTURE\\CUSTOMSOFT.INFRAESTRUCTURE.csproj"
               }
             }
           }

@@ -35,15 +35,15 @@ namespace CUSTOMSOFT.API.Controllers
         }
 
         // GET api/<FileController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{idPackage}")]
+        public string GetFilesByPackage(int idPackage)
         {
             return "value";
         }
 
         // POST api/<FileController>
         [HttpPost("[action]")]
-        public async void UploadFile(IFormFile fieldInfo)
+        public async  Task<IActionResult> UploadFile(IFormFile fieldInfo)
         {
 
             try
@@ -51,11 +51,13 @@ namespace CUSTOMSOFT.API.Controllers
                 var packageId = Request.Headers["X-Package-ID"];
                 var fileDto = await _fileService.SaveFileAsync(fieldInfo, int.Parse(packageId));
                 var response = await _mediator.Send(new AddFileCommand(fileDto));
+                return Ok(response);
 
             }
             catch(Exception ex)
             {
-
+                var errorDetails = new ErrorDetails(ex);
+                return StatusCode((int)errorDetails.StatusCode, errorDetails);
             }
 
         }

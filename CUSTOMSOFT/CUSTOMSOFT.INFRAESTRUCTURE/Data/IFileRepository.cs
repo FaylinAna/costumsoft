@@ -12,6 +12,7 @@ namespace CUSTOMSOFT.INFRAESTRUCTURE.Data
     public interface IFileRepository
     {
         Task<FileDto> AddFile(FileDto fileDto);
+        Task<List<FileDto>> GetFileByPackageId(int packageId);
 
     }
 }

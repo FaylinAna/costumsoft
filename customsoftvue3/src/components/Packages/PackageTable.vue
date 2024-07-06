@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-card title="Paquetes" flat>
     <custom-alert
       v-if="messagesView"
       :message="messagesView"
@@ -16,65 +16,94 @@
       style="display: none"
       @change="handleFileChange"
     />
-    <v-row>
-      <v-col cols="6">
-        <div class="float-right">
-          <v-btn @click="openDialog_Details()" icon color="primary">
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
-        </div>
-      </v-col>
-      <v-col cols="6">
-        <div class="float-left">
-          <v-btn @click="openDialog_Package()" icon color="primary">
-            <v-icon>mdi-magnify</v-icon>
-          </v-btn>
-        </div>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <v-data-table
-          :headers="headers"
-          :items="packages"
-          outlined
-          dense
-          color="blue"
-          dark
-          loading-text="Cargando... Por favor espera"
-        >
-          <template v-slot:item.status="{ item }">
-            <v-chip color="primary" text-color="white">{{
-              getLastStatus(item)
-            }}</v-chip>
-          </template>
-          <template v-slot:item.actions="{ item }">
-            <v-icon @click="showPackageDetails(item)">mdi-eye</v-icon>
-            <v-icon @click="updatePackage(item)">mdi-update</v-icon>
-            <UploadFile
-              :itemId="item.id"
-              @loading="showLoadingAlert"
-              @message-error="showErrorAlert"
-              @message-succes="showSuccessAlert"
-            />
-          </template>
-        </v-data-table>
-      </v-col>
-    </v-row>
+    <v-card-subtitle>
+      <v-row>
+        <v-col cols="6">
+          <div class="float-right">
+            <v-btn @click="openDialog_Details()" icon color="primary">
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
+          </div>
+        </v-col>
+        <v-col cols="6">
+          <div class="float-left">
+            <v-btn @click="openDialog_Package()" icon color="primary">
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+          </div>
+        </v-col>
+      </v-row>
+    </v-card-subtitle>
+    <v-card-text>
+      <v-row>
+        <v-col>
+          <v-data-table
+            :headers="headers"
+            :items="packages"
+            :search="search"
+            outlined
+            dense
+            :items-per-page="5"
+            color="blue"
+            dark
+            loading-text="Cargando... Por favor espera"
+          >
+            <template v-slot:item.status="{ item }">
+              <v-chip :color="getChipColor(item)" text-color="white">
+                {{ getLastStatus(item) }}
+              </v-chip>
+            </template>
+            <template v-slot:item.actions="{ item }">
+              <v-icon @click="showPackageDetails(item)">mdi-eye</v-icon>
+              <UploadFile
+                :itemId="item.id"
+                @loading="showLoadingAlert"
+                @message-error="showErrorAlert"
+                @message-succes="showSuccessAlert"
+              />
+            </template>
+          </v-data-table>
+        </v-col>
+      </v-row>
+    </v-card-text>
     <DialogShared
       :isVisible="isModalVisible"
       :modalContent="ModalContent"
       :modalTitle="ModalTitle"
       :packageStates="selectedPackageStates"
-      :packageItem = "selectPackage"
+      :packageItem="selectPackage"
       @package-added="handlePackageAdded"
       v-if="isModalVisible"
       @close="closeModal"
-    />
-  </div>
+    >
+    <template v-if="ModalContent === 'packageDetails'">
+          <div>
+            <PackageDetailsModal 
+            :packageStates="selectedPackageStates"
+            :packageItem = "selectPackage"
+            @loading="showLoadingAlert" 
+            @added="handlePackageAdded" 
+            @message-error="showErrorAlert"
+            @message-succes ="showSuccessAlert"
+            />
+          </div>
+        </template>
+       
+        <template v-else-if="ModalContent === 'NewPackageForm'">
+          <div>
+            <NewPackageForm 
+            @loading="showLoadingAlert" 
+            @added="handlePackageAdded" 
+            @message-error="showErrorAlert"
+            @message-succes ="showSuccessAlert"
+             />
+          </div>
+        </template>
+    </DialogShared>
+  </v-card>
 </template>
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, reactive } from "vue";
 import NewPackageForm from "./NewPackageForm.vue";
 import { Package, State } from "../../ApiService/Interfaces/types";
 import { getPackages } from "../../ApiService/Services/ApiService";
@@ -87,9 +116,11 @@ export default defineComponent({
     const ModalTitle = ref("");
     const packages = ref<Package[]>([]);
     const selectedPackageStates = ref<State[]>([]);
-    const selectPackage =  ref<Package>();
+    const selectPackage = ref<Package>();
     const isModalVisible = ref(false);
-
+    const search = reactive({
+      value: "",
+    });
     const loading = ref(true);
     const messagesView = ref<string>("");
     const messageserrorView = ref<string>("");
@@ -142,12 +173,6 @@ export default defineComponent({
     const closeModal = () => {
       isModalVisible.value = false;
     };
-    const getLastStatus = (item: Package): string => {
-      if (item.states && item.states.length > 0) {
-        return item.states[item.states.length - 1].state;
-      }
-      return "";
-    };
 
     const showSuccessAlert = (req1, msg) => {
       console.log(msg, "msg msg msg");
@@ -165,6 +190,26 @@ export default defineComponent({
       console.log("showLoadingAlert");
     };
 
+    const getLastStatus = (item: Package): string => {
+      if (item.states && item.states.length > 0) {
+        return item.states[item.states.length - 1].state;
+      }
+      return "";
+    };
+    const getChipColor = (item) => {
+      const status = getLastStatus(item);
+      if (status === "Nuevo") {
+        return "primary";
+      } else if (status === "Rechazado") {
+        return "red";
+      } else if (status === "Entregado") {
+        return "green";
+      } else if (status === "Transito") {
+        return "yellow";
+      } else {
+        return "grey";
+      }
+    };
     onMounted(fetchPackages);
     return {
       packages,
@@ -188,6 +233,8 @@ export default defineComponent({
       showSuccessAlert,
       messageserrorView,
       messagesView,
+      search,
+      getChipColor,
     };
   },
   components: {

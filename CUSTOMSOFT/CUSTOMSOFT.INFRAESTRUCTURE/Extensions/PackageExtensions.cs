@@ -24,8 +24,8 @@ namespace CUSTOMSOFT.INFRAESTRUCTURE.Extensions
                     Weight = package.Weight,
                     States = new List<PackageStateDTO>()
                 };
-
-                foreach (var state in package.States)
+               if(package?.States != null )
+                foreach (var state in package?.States)
                 {
                     var stateDTO = new PackageStateDTO
                     {

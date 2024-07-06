@@ -1,45 +1,71 @@
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-col cols="12" sm="8" md="6">
-  <v-card>
-    <v-card-title class="font-weight-bold">TR - {{ editedPackageItem.trackingNumber }} / Fecha {{ formattedDate }}</v-card-title>
-    <v-card-text>
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-text-field v-model="editedPackageItem.customerName" label="Nombre Del cliente" outlined :disabled="!editableFields.customerName" :class="{ 'text--black': !editableFields.customerName }"></v-text-field>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-text-field v-model="editedPackageItem.deliveryAddress" label="Dirección" outlined :disabled="!editableFields.deliveryAddress" :class="{ 'text--black': !editableFields.deliveryAddress }"></v-text-field>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-text-field v-model="editedPackageItem.weight" label="Peso" outlined :disabled="!editableFields.weight" :class="{ 'text--black': !editableFields.weight }"></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row v-for="state in packageStates" :key="state.id" align="center">
-        <v-col cols="auto">
-          <v-icon color="primary">mdi-truck-delivery</v-icon>
-        </v-col>
-        <v-col>
-          <div>{{ state.state }} - {{ state.state_date_packages }}</div>
-        </v-col>
-      </v-row>
-    </v-card-text>
-    <v-card-actions>
-      <v-btn @click="toggleEditMode" color="primary">{{ isEditMode ? 'Guardar' : 'Editar' }}</v-btn>
-    </v-card-actions>
-  </v-card>
-</v-col>
-</v-row >
-
-</v-container>
+    <v-card>
+      <v-card-title class="font-weight-bold"
+        >TR - {{ editedPackageItem.trackingNumber }}
+      </v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="editedPackageItem.customerName"
+              label="Nombre Del cliente"
+              outlined
+              :disabled="!editableFields.customerName"
+              :class="{ 'text--black': !editableFields.customerName }"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="editedPackageItem.deliveryAddress"
+              label="Dirección"
+              outlined
+              :disabled="!editableFields.deliveryAddress"
+              :class="{ 'text--black': !editableFields.deliveryAddress }"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6">
+            <v-text-field
+              v-model="editedPackageItem.weight"
+              label="Peso"
+              outlined
+              :disabled="!editableFields.weight"
+              :class="{ 'text--black': !editableFields.weight }"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <StatusItem
+          v-for="status in editedPackageItem.states"
+          :key="status.id"
+          :status="status"
+        />
+      </v-card-text>
+      <v-card-actions  >
+        <template v-if="isEditMode">
+          <PackageStatusButtons
+            :packageStates="editedPackageItem.states"
+            @status-change="handleStatusChange"
+          />
+        </template>
+        <v-btn @click="toggleEditMode" color="primary">{{
+          isEditMode ? "Guardar" : "Editar"
+        }}</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-container>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, computed } from 'vue';
-import { State, Package } from '../ApiService/Interfaces/types';
-
+import { defineComponent, PropType, ref, computed } from "vue";
+import { State, Package } from "../../ApiService/Interfaces/types";
+import StatusItem from "../Shared/StatusItem.vue";
+import PackageStatusButtons from "../Utils/PackageStatusButtons.vue";
+import { UpdatePackage } from "../../ApiService/Services/ApiService";
 export default defineComponent({
+  components: {
+    StatusItem,
+    PackageStatusButtons,
+  },
   props: {
     packageItem: {
       type: Object as PropType<Package>,
@@ -47,39 +73,49 @@ export default defineComponent({
     },
     packageStates: {
       type: Array as PropType<State[]>,
-      required: true
-    }
+      required: true,
+    },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const formattedDate = ref("");
     const isEditMode = ref(false);
     const editedPackageItem = ref({ ...props.packageItem });
+    const error = ref<string>("");
+    const messagesInfo = ref<string>("");
 
     const editableFields = computed(() => ({
       customerName: isEditMode.value,
       deliveryAddress: isEditMode.value,
       weight: isEditMode.value,
-
     }));
 
     const formatDate = (dateString: string) => {
       const date = new Date(dateString);
-      const formattedDate = date.toISOString().slice(0, 19).replace('T', ' ');
+      const formattedDate = date.toISOString().slice(0, 19).replace("T", " ");
       return formattedDate;
     };
-    
-    const updateFormattedDate = () => {
-      formattedDate.value = formatDate(editedPackageItem.value.stateDate);
+
+    const handleStatusChange = (newStatus: string) => {
+      editedPackageItem.value.StateDescription = newStatus;
+      emit("loading");
+      return new Promise(async (resolve, reject) => {
+        try {
+          const newPackageResponse = await UpdatePackage(
+            editedPackageItem.value
+          );
+          emit("added");
+          
+          messagesInfo.value =
+            "Se Actualizo el paquete con el estatus => " + newStatus;
+          emit("message-succes", newPackageResponse, messagesInfo);
+          resolve(newPackageResponse);
+        } catch (err) {
+          emit("message-error", error.value);
+          error.value = err.message || "Error al Actualizar el paquete";
+          reject(err);
+        }
+      });
     };
-
-    // Inicializar la fecha formateada al montar el componente
-    updateFormattedDate();
-
-    // Observar cambios en editedPackageItem.stateDate
-    // y actualizar la fecha formateada en consecuencia
-    watch(() => editedPackageItem.value.stateDate, () => {
-      updateFormattedDate();
-    });
 
     const toggleEditMode = () => {
       if (isEditMode.value) {
@@ -92,9 +128,10 @@ export default defineComponent({
       editedPackageItem,
       editableFields,
       toggleEditMode,
-      formatDate
+      formatDate,
+      handleStatusChange,
     };
-  }
+  },
 });
 </script>
 
@@ -103,6 +140,6 @@ export default defineComponent({
   font-weight: bold;
 }
 .text--black {
-  color: #000000; 
+  color: #000000;
 }
 </style>
